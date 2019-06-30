@@ -1,5 +1,11 @@
 {
   "name": "NeverGreen",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "version": "1.0.0",
+  "description": "Greatest band ever!",
+  "main": "index.js",
+  "repository": "https://github.com/anthonymidili/NeverGreen.git",
+  "author": "AMidili",
+  "license": "MIT"
 }

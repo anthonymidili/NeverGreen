@@ -78,8 +78,8 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: NeverGreen_production
-  username: NeverGreen
-  password: <%= ENV['NEVERGREEN_DATABASE_PASSWORD'] %>
+# production:
+#   <<: *default
+#   database: NeverGreen_production
+#   username: NeverGreen
+#   password: <%= ENV['NEVERGREEN_DATABASE_PASSWORD'] %>
