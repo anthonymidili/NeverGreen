@@ -1,0 +1,36 @@
+$footer-size: 160px;
+html, body {height: 100%;}
+
+#wrap {
+  min-height: 100%;
+  padding-bottom: 20px;
+}
+
+#main {
+  padding-bottom: $footer-size; /* must be same height as the footer */
+  /* add the xy grid container */
+  @include xy-grid-container;
+  /* use the grid-margin-x by default with all grid-x's */
+  .grid-x {
+    @extend .grid-margin-x;
+  }
+}
+
+footer {
+  position: relative;
+  margin-top: -$footer-size; /* negative value of footer height */
+  min-height: $footer-size;
+
+  #style_footer {
+    min-height: $footer-size;
+    border-style: solid;
+    border-width: 1px;
+    padding: 20px;
+    border-color: #003300;
+    background: #003300;
+    color: $dark-gray;
+
+    a {color: $dark-gray;}
+    a:hover {color: $medium-gray;}
+  }
+}

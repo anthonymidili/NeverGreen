@@ -1,11 +1,22 @@
-!!!
-%html
+!!! 5
+%html{ lang: 'en' }
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title NeverGreen
-    = csrf_meta_tags
-    = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %meta{ charset: 'utf-8' }
+
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
+
+    = favicon_link_tag('favicon.png')
+    %title= content_for?(:title) ? "Never Green | #{yield(:title)}" : 'Never Green'
+
+    = stylesheet_link_tag 'application', media: :all
+    = javascript_include_tag 'application', 'data-turbolinks-track': true
+    = csrf_meta_tag
+
   %body
-    = yield
+    #wrap
+      = render 'layouts/topbar'
+
+      #main
+        = yield
+
+    = render 'layouts/footer'

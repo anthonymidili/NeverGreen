@@ -1,0 +1,21 @@
+.top-bar
+  .top-bar-left
+    .title-bar
+      .title-bar-title
+        = link_to root_path do
+          %h3 Never Green
+      .title-bar-right
+        %button{data: {hide_for: 'medium', responsive_toggle: 'responsive-menu'}}
+          .menu-icon{data: {toggle: true}}
+  .top-bar-right
+    #responsive-menu
+      %ul.menu.vertical.medium-horizontal{data: {responsive_menu: 'accordion medium-dropdown'}}
+        %li= link_to 'Home', root_path
+        %li= link_to 'About', about_path
+        -# %li
+        -#   = link_to 'one', '#'
+        -#   %ul.menu.vertical
+        -#     %li
+        -#       = link_to '2', '#'
+        -#     %li
+        -#       = link_to '3', '#'

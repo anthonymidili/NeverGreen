@@ -1,7 +1,10 @@
 {
   "name": "NeverGreen",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "node": "^12.5.0"
+  },
   "version": "1.0.0",
   "description": "Greatest band ever!",
   "main": "index.js",
