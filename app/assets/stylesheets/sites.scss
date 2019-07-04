@@ -1,3 +1,10 @@
 body {
   background-color: $backgound-color;
 }
+
+a {
+  color: #20e7ff;
+  &:hover {
+    color: lighten(#20e7ff, 35%);
+  }
+}
