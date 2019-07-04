@@ -95,5 +95,5 @@ end
 
 # Devise mailer
 config.action_mailer.default_url_options = {
-  host: ENV.fetch('DEFAULT_URL')
+  host: ENV['DEFAULT_URL']
 }
