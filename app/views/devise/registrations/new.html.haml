@@ -19,5 +19,5 @@
         %br/
         = f.password_field :password_confirmation, autocomplete: "new-password"
       .actions
-        = f.submit "Sign up"
+        = f.submit "Sign up", class: 'button'
     = render "devise/shared/links"
