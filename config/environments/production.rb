@@ -94,6 +94,4 @@ Rails.application.configure do
 end
 
 # Devise mailer
-config.action_mailer.default_url_options = {
-  host: ENV['DEFAULT_URL']
-}
+config.action_mailer.default_url_options = { host: ENV['DEFAULT_URL'] }
