@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class projectsControllerTest < ActionDispatch::IntegrationTest
+class ProjectsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @project = projects(:one)
   end
