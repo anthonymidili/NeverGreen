@@ -1,10 +1,10 @@
-class CreateSongs < ActiveRecord::Migration[5.2]
+class Createprojects < ActiveRecord::Migration[5.2]
   def change
-    create_table :songs do |t|
+    create_table :projects do |t|
       t.string :name, null: false
 
       t.timestamps
     end
-    add_index :songs, :name, unique: true
+    add_index :projects, :name, unique: true
   end
 end

@@ -5,6 +5,6 @@ body {
 a {
   color: #20e7ff;
   &:hover {
-    color: lighten(#20e7ff, 35%);
+    color: darken(#20e7ff, 15%);
   }
 }
