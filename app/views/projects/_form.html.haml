@@ -1,13 +1,23 @@
-= form_for @project do |f|
-  - if @project.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
-      %ul
-        - @project.errors.full_messages.each do |message|
-          %li= message
+= form_with model: @project, local: true do |f|
+  = render 'notifications/error_messages', object: f.object
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .actions
-    = f.submit 'Save', class: 'button'
+  .grid-x
+    .cell
+      .field
+        = f.label :name
+        = f.text_field :name
+  .grid-x
+    .cell
+      .field
+        = f.label :tracks
+        = f.file_field :tracks, multiple: true, direct_upload: true
+  .grid-x
+    .medium-6.cell
+      .actions
+        = f.submit class: 'button'
+  .grid-x
+    .cell
+      - if f.object.tracks.attached? && f.object.valid?
+        %ul.menu.vertical
+          - f.object.tracks.each do |track|
+            %li= display_track(track)

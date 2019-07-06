@@ -3,7 +3,15 @@
     %p
       %b Name:
       = @project.name
+.grid-x
+  .cell
+    - if @project.tracks.attached?
+      %ul.menu.vertical
+        - @project.tracks.each do |track|
+          %li= display_track(track)
 
+.grid-x
+  .cell
     = link_to 'Edit', edit_project_path(@project)
     \|
     = link_to 'Back', projects_path
