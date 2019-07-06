@@ -18,6 +18,7 @@
   .grid-x
     .cell
       - if f.object.tracks.attached? && f.object.valid?
-        %ul.menu.vertical
-          - f.object.tracks.each do |track|
-            %li= display_track(track)
+        - f.object.tracks.each do |track|
+          = display_track(track)
+          = link_to 'Remove', project_remove_track_path(f.object, track)
+          %br/
