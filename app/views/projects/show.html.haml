@@ -6,7 +6,9 @@
     - if @project.tracks.attached?
       - @project.tracks.each do |track|
         .track
-          = display_track(track)
+          = link_to rails_blob_path(track, disposition: :attachment),
+          title: 'Download' do
+            = display_track(track)
 
 .grid-x
   .cell

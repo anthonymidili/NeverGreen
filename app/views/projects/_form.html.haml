@@ -20,7 +20,10 @@
       - if f.object.tracks.attached? && f.object.valid?
         - f.object.tracks.each do |track|
           .track
-            = display_track(track)
-            = link_to project_remove_track_path(f.object, track), remote: true do
+            = link_to rails_blob_path(track, disposition: :attachment),
+            title: 'Download' do
+              = display_track(track)
+            = link_to project_track_path(f.object, track),
+            remote: true, method: :delete do
               = fa_icon('trash', class: 'remove_link', title: 'Remove')
             %br/

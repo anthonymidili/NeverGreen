@@ -21,18 +21,3 @@ a {
     }
   }
 }
-
-// Style the files / tracks
-.track {
-  background-color: $light-gray;
-  padding: 5px;
-  margin-bottom: 5px;
-  @extend .dark_links;
-  .remove_link {
-    float: right;
-    color: red;
-    &:hover {
-      color: darken(red, 15%);
-    }
-  }
-}
