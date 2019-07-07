@@ -1,4 +1,4 @@
-= form_with model: @project, local: true do |f|
+= form_with model: @project, local: true, id: 'project_form' do |f|
   = render 'notifications/error_messages', object: f.object
 
   .grid-x
@@ -21,6 +21,6 @@
         - f.object.tracks.each do |track|
           .track
             = display_track(track)
-            = link_to project_remove_track_path(f.object, track) do
+            = link_to project_remove_track_path(f.object, track), remote: true do
               = fa_icon('trash', class: 'remove_link', title: 'Remove')
             %br/

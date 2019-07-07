@@ -70,7 +70,10 @@ class ProjectsController < ApplicationController
   def remove_track
     @project = Project.find(params[:project_id])
     @track = @project.tracks.find_by(id: params[:track_id]).purge
-    redirect_to edit_project_path(@project)
+    respond_to do |format|
+      format.html { redirect_to edit_project_path(@project) }
+      format.js
+    end
   end
 
   private
