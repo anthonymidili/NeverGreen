@@ -4,6 +4,7 @@
 
     = render 'form'
 
-    = link_to 'Show', @project
-    \|
-    = link_to 'Back', projects_path
+    %br/
+    %ul.menu.simple
+      %li= link_to 'Show', @project
+      %li= link_to 'All projects', projects_path

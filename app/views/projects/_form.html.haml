@@ -16,9 +16,11 @@
       .actions
         = f.submit class: 'button'
   .grid-x
-    .cell
+    .medium-6.cell
       - if f.object.tracks.attached? && f.object.valid?
         - f.object.tracks.each do |track|
-          = display_track(track)
-          = link_to 'Remove', project_remove_track_path(f.object, track)
-          %br/
+          .track
+            = display_track(track)
+            = link_to project_remove_track_path(f.object, track) do
+              = fa_icon('trash', class: 'remove_link', title: 'Remove')
+            %br/

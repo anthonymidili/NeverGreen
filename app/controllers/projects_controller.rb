@@ -33,6 +33,8 @@ class ProjectsController < ApplicationController
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
+        # Remove all blobs that do not have attachments
+        ActiveStorage::Blob.where(metadata: nil).each { |blob| blob.purge }
         format.html { render :new }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
@@ -47,6 +49,8 @@ class ProjectsController < ApplicationController
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
+        # Remove all blobs that do not have attachments
+        ActiveStorage::Blob.where(metadata: nil).each { |blob| blob.purge }
         format.html { render :edit }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end

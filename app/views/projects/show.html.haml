@@ -1,17 +1,16 @@
 .grid-x
   .cell
-    %p
-      %b Name:
-      = @project.name
+    %h1= @project.name
 .grid-x
-  .cell
+  .medium-6.cell
     - if @project.tracks.attached?
-      %ul.menu.vertical
-        - @project.tracks.each do |track|
-          %li= display_track(track)
+      - @project.tracks.each do |track|
+        .track
+          = display_track(track)
 
 .grid-x
   .cell
-    = link_to 'Edit', edit_project_path(@project)
-    \|
-    = link_to 'Back', projects_path
+    %br/
+    %ul.menu.simple
+      %li= link_to 'Edit', edit_project_path(@project)
+      %li= link_to 'All projects', projects_path

@@ -42,6 +42,8 @@ gem 'haml-rails', '~> 2.0.1'
 gem 'foundation-rails', '~> 6.5.3'
 gem 'autoprefixer-rails', '~> 9.6.0'
 gem 'sprockets-es6', '~> 0.9.2'
+# fonts
+gem 'font_awesome5_rails'
 # devise
 gem 'devise', '~> 4.6.2'
 # Uploads

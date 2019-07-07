@@ -5,13 +5,16 @@ module ProjectsHelper
         auto_orient: true,
         gravity: "center",
         resize: "400x400^"
-        })), rails_blob_path(track, disposition: :attachment)
+        })), rails_blob_path(track, disposition: :attachment),
+        title: 'Download'
     elsif track.previewable?
-      link_to image_tag(track.preview(resize: '400x400')), rails_blob_path(track, disposition: :attachment)
+      link_to image_tag(track.preview(resize: '400x400')),
+      rails_blob_path(track, disposition: :attachment), title: 'Download'
     elsif track.image?
-      link_to image_tag(track, width: 400), track
+      link_to image_tag(track, width: 400), track, title: 'Download'
     else
-      link_to track.filename, rails_blob_path(track, disposition: :attachment)
+      link_to track.filename, rails_blob_path(track, disposition: :attachment),
+      title: 'Download'
     end
   end
 end
