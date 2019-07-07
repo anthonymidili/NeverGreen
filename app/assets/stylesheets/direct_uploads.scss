@@ -12,7 +12,7 @@
 }
 
 .direct-upload--pending {
-  opacity: 0.6;
+  opacity: 0.3;
 }
 
 .direct-upload__progress {
@@ -20,14 +20,15 @@
   top: 0;
   left: 0;
   bottom: 0;
-  opacity: 0.6;
+  opacity: 0.4;
   background: #fffc00;
+  color: black;
   transition: width 120ms ease-out, opacity 60ms 60ms ease-in;
   transform: translate3d(0, 0, 0);
 }
 
 .direct-upload--complete .direct-upload__progress {
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .direct-upload--error {
