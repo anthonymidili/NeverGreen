@@ -5,11 +5,10 @@
   .medium-6.cell
     - if @project.tracks.attached?
       - @project.tracks.each do |track|
-        .track
+        .track_bar
           = link_to rails_blob_path(track, disposition: :attachment),
           title: 'Download' do
             = display_track(track)
-
 .grid-x
   .cell
     %br/
