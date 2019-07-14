@@ -4,6 +4,13 @@ class TracksController < ApplicationController
   before_action :set_project
   before_action :set_track
 
+  def downloaded
+    current_user.downloaded_tracks.create(
+      project_id: @project.id,
+      track_id: @track.id
+    )
+  end
+
   def destroy
     respond_to do |format|
       @track.try(:purge)

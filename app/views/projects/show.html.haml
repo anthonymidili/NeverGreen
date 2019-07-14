@@ -7,7 +7,8 @@
       - @project.tracks.each do |track|
         .track_bar
           = link_to rails_blob_path(track, disposition: :attachment),
-          title: 'Download' do
+          title: 'Download', id: "track_#{track.id}",
+          data: { project: @project.id, track: track.id } do
             = display_track(track)
 .grid-x
   .cell
