@@ -7,5 +7,7 @@ class CreateDownloadedTracks < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+
+    add_index :downloaded_tracks, [:user_id, :track_id], unique: true
   end
 end

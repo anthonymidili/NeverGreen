@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_07_13_154053) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_downloaded_tracks_on_project_id"
+    t.index ["user_id", "track_id"], name: "index_downloaded_tracks_on_user_id_and_track_id", unique: true
     t.index ["user_id"], name: "index_downloaded_tracks_on_user_id"
   end
 
