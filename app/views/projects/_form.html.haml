@@ -18,19 +18,4 @@
   .grid-x
     - if f.object.tracks.attached? && f.object.valid?
       - f.object.tracks.each do |track|
-        .cell
-          %div{id: "track_#{track.id}"}
-            .grid-x
-              .small-10.large-5.cell
-                .bar
-                  = link_to rails_blob_path(track, disposition: :attachment),
-                  title: 'Download', id: "download_link_#{track.id}",
-                  data: { project: @project.id, track: track.id } do
-                    = display_track(track)
-                  = link_to project_track_path(f.object, track),
-                  remote: true, method: :delete do
-                    = fa_icon('trash', class: 'remove_link', title: 'Remove')
-              .small-2.large-7.cell
-                %div{class: "download_status_#{track.id}"}
-                  - if @project.downloaded_tracks.find_by(track_id: track.id)
-                    = fa_icon 'cloud-download-alt', class: 'downloaded', title: 'Downloaded'
+        = render 'tracks/track', project: f.object, track: track

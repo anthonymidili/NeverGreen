@@ -5,8 +5,11 @@ class TracksController < ApplicationController
   before_action :set_track
 
   def downloaded
-    current_user.downloaded_tracks.find_or_create_by(track_id: @track.id) do |dt|
-      dt.project = @project
+    respond_to do |format|
+      current_user.downloaded_tracks.find_or_create_by(track_id: @track.id) do |dt|
+        dt.project = @project
+      end
+      format.js
     end
   end
 
