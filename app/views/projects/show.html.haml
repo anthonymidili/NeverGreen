@@ -2,14 +2,21 @@
   .cell
     %h1= @project.name
 .grid-x
-  .medium-6.cell
-    - if @project.tracks.attached?
-      - @project.tracks.each do |track|
-        .track_bar
-          = link_to rails_blob_path(track, disposition: :attachment),
-          title: 'Download', id: "track_#{track.id}",
-          data: { project: @project.id, track: track.id } do
-            = display_track(track)
+  - if @project.tracks.attached?
+    - @project.tracks.each do |track|
+      .cell
+        %div{id: "track_#{track.id}"}
+          .grid-x
+            .small-10.medium-6.large-5.cell
+              .bar
+                = link_to rails_blob_path(track, disposition: :attachment),
+                title: 'Download', id: "download_link_#{track.id}",
+                data: { project: @project.id, track: track.id } do
+                  = display_track(track)
+            .small-2.medium-6.large-7.cell
+              %div{class: "download_status_#{track.id}"}
+                - if @project.downloaded_tracks.find_by(track_id: track.id)
+                  = fa_icon 'cloud-download-alt', class: 'downloaded', title: 'Downloaded'
 .grid-x
   .cell
     %br/

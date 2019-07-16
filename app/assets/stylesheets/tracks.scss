@@ -1,8 +1,11 @@
 // Style the files / tracks
-.track_bar {
+[id^=track_] {
+  margin-bottom: 5px;
+}
+
+.bar {
   background-color: $light-gray;
   padding: 5px;
-  margin-bottom: 5px;
   @extend .dark_links;
   .remove_link {
     float: right;
@@ -11,4 +14,9 @@
       color: darken(red, 15%);
     }
   }
+}
+
+.downloaded {
+  color: #00ff47;
+  font-size: xx-large;
 }
