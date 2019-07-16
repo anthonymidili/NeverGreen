@@ -7,11 +7,11 @@
           title: 'Download', id: "download_link_#{track.id}",
           data: { project: @project.id, track: track.id } do
             = display_track(track)
-          - if project
+          - if params[:action] == 'edit'
             = link_to project_track_path(project, track),
             remote: true, method: :delete do
               = fa_icon('trash', class: 'remove_link', title: 'Remove')
       .small-2.large-7.cell
         %div{class: "download_status_#{track.id}"}
-          - if @project.downloaded_tracks.find_by(track_id: track.id)
+          - if project.downloaded_tracks.find_by(track_id: track.id)
             = fa_icon 'cloud-download-alt', class: 'downloaded', title: 'Downloaded'

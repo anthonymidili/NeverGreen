@@ -1,1 +1,3 @@
-$("#track_" + <%= @track.id %>).html("<%= j render 'tracks/track', track: @track %>");
+$(".download_status_" + <%= @track.id %>).html(
+  '<%= fa_icon('cloud-download-alt', class: 'downloaded', title: 'Downloaded') %>'
+);
