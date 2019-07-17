@@ -2,7 +2,11 @@
   margin-bottom: 20px;
 
   .title-bar-title {
-    h3 { color: black; }
+    h3 {
+      color: black;
+      font-family: $title-font;
+      font-stretch: condensed;
+    }
   }
 
   /* on small, make dropdown standout */
