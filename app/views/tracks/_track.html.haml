@@ -13,5 +13,5 @@
               = fa_icon('trash', class: 'remove_link', title: 'Remove')
       .small-2.large-7.cell
         %div{class: "download_status_#{track.id}"}
-          - if project.downloaded_tracks.find_by(track_id: track.id)
+          - if current_user.downloaded_tracks.find_by(project: project, track_id: track.id)
             = fa_icon 'cloud-download-alt', class: 'downloaded', title: 'Downloaded'

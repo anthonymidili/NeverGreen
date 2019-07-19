@@ -21,3 +21,12 @@ a {
     }
   }
 }
+
+.remove_link {
+  float: right;
+  font-size: x-large;
+  color: red;
+  &:hover {
+    color: darken(red, 15%);
+  }
+}

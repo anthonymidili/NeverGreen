@@ -46,6 +46,7 @@ gem 'sprockets-es6', '~> 0.9.2'
 gem 'font_awesome5_rails'
 # devise
 gem 'devise', '~> 4.6.2'
+gem 'devise_invitable', '~> 2.0.0'
 # Uploads
 gem 'mini_magick', '~> 4.8'
 gem 'aws-sdk-s3', require: false

@@ -1,0 +1,22 @@
+.grid-x
+  .cell.medium-6.medium-offset-3
+    %h1 Band Members
+
+    - if valid_admin?
+      %p= link_to 'Invite another band member', new_user_invitation_path, class: 'button'
+
+    %table
+      %thead
+        %tr
+          %td Name
+          - if valid_admin?
+            %td Kick out
+      %tboby.dark_links
+        - @band_members.each do |user|
+          %tr
+            %td= user.name
+            - if valid_admin?
+              %td
+                = link_to band_members_kickout_path(user),
+                method: :delete, data: { confirm: 'Are you sure?' } do
+                  = fa_icon 'biohazard', class: 'remove_link'
