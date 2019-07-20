@@ -19,4 +19,5 @@
               %td
                 = link_to band_members_kickout_path(user),
                 method: :delete, data: { confirm: 'Are you sure?' } do
-                  = fa_icon 'biohazard', class: 'remove_link'
+                  = fa_icon 'biohazard', class: 'remove_link',
+                  title: 'Kick out of the band'
