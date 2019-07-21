@@ -6,15 +6,19 @@
       %thead
         %tr
           %th Name
-          %th
+          %th New activity
           %th
           %th
 
       %tbody.dark_links
         - @projects.each do |project|
           %tr
-            %td= project.name
-            %td= link_to 'Show', project
+            %td= link_to project.name, project
+            %td
+              = link_to project, class: 'new_activity',
+              title: 'There is new activity' do
+                = alert_icon(project.has_new_activity?(current_user))
+                %span listen
             %td= link_to 'Edit', edit_project_path(project)
             %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }
 

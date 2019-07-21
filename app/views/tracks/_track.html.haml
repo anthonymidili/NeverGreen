@@ -7,7 +7,7 @@
           title: 'Download', id: "download_link_#{track.id}",
           data: { project: @project.id, track: track.id } do
             = display_track(track)
-          - if params[:action] == 'edit'
+          - if params[:action] == 'edit' || params[:project_id]
             = link_to project_track_path(project, track),
             remote: true, method: :delete do
               = fa_icon('trash', class: 'remove_link', title: 'Remove')

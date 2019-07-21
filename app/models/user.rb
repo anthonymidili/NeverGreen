@@ -6,10 +6,12 @@ class User < ApplicationRecord
     :invitable, validate_on_invite: true
 
   has_many :downloaded_tracks, dependent: :destroy
+  has_many :notifications, foreign_key: 'recipient_id', dependent: :destroy
 
   validates :name, presence: true
 
   scope :by_band_members, -> { where("'band_member' = ANY (roles)") }
+  scope :all_but_current, -> (current_user) { where.not(id: current_user) }
 
   def new_user?
     sign_in_count == 0

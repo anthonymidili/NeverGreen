@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_19_030616) do
+ActiveRecord::Schema.define(version: 2019_07_21_055721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,17 @@ ActiveRecord::Schema.define(version: 2019_07_19_030616) do
     t.index ["project_id"], name: "index_downloaded_tracks_on_project_id"
     t.index ["user_id", "track_id"], name: "index_downloaded_tracks_on_user_id_and_track_id", unique: true
     t.index ["user_id"], name: "index_downloaded_tracks_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "created_by_id", null: false
+    t.bigint "recipient_id", null: false
+    t.string "notifiable_type", null: false
+    t.bigint "notifiable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable_type_and_notifiable_id"
+    t.index ["recipient_id", "notifiable_id", "notifiable_type"], name: "index_notifications_on_recipient_id_and_notifiable_id_type", unique: true
   end
 
   create_table "projects", force: :cascade do |t|

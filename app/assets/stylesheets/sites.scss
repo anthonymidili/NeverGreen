@@ -30,3 +30,14 @@ a {
     color: darken(red, 15%);
   }
 }
+
+.new_activity {
+  color: #3daf2c !important;
+  font-size: x-large;
+  &:hover {
+    color: darken(#3daf2c, 15%) !important;
+  }
+  span {
+    font-size: medium !important;
+  }
+}
