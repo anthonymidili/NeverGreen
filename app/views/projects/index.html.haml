@@ -15,10 +15,11 @@
           %tr
             %td= link_to project.name, project
             %td
-              = link_to project, class: 'new_activity',
-              title: 'There is new activity' do
-                = alert_icon(project.has_new_activity?(current_user))
-                %span listen
+              - if project.has_new_activity?(current_user)
+                = link_to project, class: 'new_activity',
+                title: 'There is new activity' do
+                  = fa_icon "headphones"
+                  %span listen
             %td= link_to 'Edit', edit_project_path(project)
             %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }
 
