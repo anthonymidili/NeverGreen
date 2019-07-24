@@ -1,3 +1,19 @@
 .grid-x
   .cell.medium-6.medium-offset-3
     = image_tag 'logo.svg', class: 'logo'
+%br/
+.grid-x
+  - @songs.each do |song|
+    .cell.large-6
+      .callout.player
+        = song.name
+        - if user_signed_in? && valid_admin?
+          .float-right
+            = link_to 'Edit', edit_song_path(song)
+            = link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' }
+        %br/
+        = audio_tag(rails_blob_url(song.audio_file), controls: true)
+.grid-x
+  .cell
+    - if user_signed_in? && valid_admin?
+      = link_to 'Add song', new_song_path
