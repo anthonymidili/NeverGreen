@@ -2,10 +2,10 @@
   = render 'notifications/error_messages', object: f.object
 
   .field
-    = f.label :name
-    = f.text_field :name
-  .field
     = f.label :audio_file
     = f.file_field :audio_file, direct_upload: true
+  .field
+    = f.label :name
+    = f.text_field :name
   .actions
     = f.submit class: 'button'
