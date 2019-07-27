@@ -1,0 +1,17 @@
+.grid-x.align-middle
+  - @galleries.each do |gallery|
+    - if gallery.photo.attached?
+      .cell.medium-6.large-4
+        .image
+          .thumbnail
+            = link_to gallery do
+              = image_tag medium_image(gallery.photo)
+          %br/
+          - if gallery.caption.present?
+            Caption:
+            = gallery.caption
+
+.grid-x
+  .cell
+    - if user_signed_in? && valid_admin?
+      = link_to 'Add photo', new_gallery_path

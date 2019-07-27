@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   delete 'band_members/kickout/:id', as: :band_members_kickout, to: 'band_members#kickout'
 
   resources :songs
+  resources :galleries
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

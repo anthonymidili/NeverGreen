@@ -1,0 +1,18 @@
+.grid-x
+  .cell
+    - if @gallery.photo.attached?
+      %p
+        %b Photo:
+        .thumbnail
+          = link_to root_path do
+            = image_tag medium_image(@gallery.photo)
+    %p
+      %b Caption:
+      = @gallery.caption
+
+    - if user_signed_in? && valid_admin?
+      = link_to 'Edit', edit_gallery_path(@gallery)
+      \|
+      = link_to 'Back to index', galleries_path
+    - else
+      = link_to 'Back', root_path

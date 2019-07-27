@@ -17,3 +17,15 @@
   .cell
     - if user_signed_in? && valid_admin?
       = link_to 'Add song', new_song_path
+%br/
+.grid-x.align-middle
+  - @galleries.each do |gallery|
+    - if gallery.photo.attached?
+      .cell.medium-6.large-4
+        .thumbnail
+          = link_to gallery do
+            = image_tag medium_image(gallery.photo)
+.grid-x
+  .cell
+    - if user_signed_in? && valid_admin?
+      = link_to 'Add photo', new_gallery_path

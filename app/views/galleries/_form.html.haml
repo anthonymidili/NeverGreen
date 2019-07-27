@@ -1,0 +1,11 @@
+= form_with model: @gallery, local: true do |f|
+  = render 'notifications/error_messages', object: f.object
+
+  .field
+    = f.label :photo
+    = f.file_field :photo, direct_upload: true
+  .field
+    = f.label :caption
+    = f.text_field :caption
+  .actions
+    = f.submit class: 'button'
