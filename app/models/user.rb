@@ -17,6 +17,10 @@ class User < ApplicationRecord
     sign_in_count == 0
   end
 
+  def has_new_project_activity?
+    notifications.any?
+  end
+
   private
     # A Devise method
     def after_sign_in_path_for(resource)
