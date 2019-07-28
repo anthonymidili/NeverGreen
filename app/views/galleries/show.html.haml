@@ -2,7 +2,6 @@
   .cell
     - if @gallery.photo.attached?
       %p
-        %b Photo:
         .thumbnail
           = link_to root_path do
             = image_tag medium_image(@gallery.photo)
