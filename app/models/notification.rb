@@ -6,7 +6,7 @@ class Notification < ApplicationRecord
   # Find all band members that are not the current user.
   def self.new_activity(notifiable, created_by)
     User.by_band_members.all_but_current(created_by).each do |recipient|
-      create_notification(notifiable, created_by, recipient)
+      NotifierWorker.perform_async(notifiable.id, created_by.id, recipient.id)
     end
   end
 

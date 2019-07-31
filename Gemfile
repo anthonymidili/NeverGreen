@@ -51,6 +51,9 @@ gem 'devise_invitable', '~> 2.0.0'
 gem 'mini_magick', '~> 4.8'
 gem 'aws-sdk-s3', require: false
 gem 'image_processing', '~> 1.6'
+# Background jobs
+gem 'sidekiq', '~> 5.2.7'
+gem 'redis', '~> 4.1.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
