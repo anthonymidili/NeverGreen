@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'band_members/directory'
+  resources :band_members, only: [:index, :destroy]
   delete 'band_members/kickout/:id', as: :band_members_kickout, to: 'band_members#kickout'
 
   resources :songs

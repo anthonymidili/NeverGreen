@@ -16,7 +16,7 @@ class Users::InvitationsController < Devise::InvitationsController
           (u.roles += ['band_member']).uniq!
         end
         set_flash_message :notice, :send_instructions, email: user.email
-        redirect_to band_members_directory_path
+        redirect_to band_members_path
       # If user is not found, Create the user, send in invitation and set the role.
       else
         self.resource =
@@ -29,7 +29,7 @@ class Users::InvitationsController < Devise::InvitationsController
           if is_flashing_format? && self.resource.invitation_sent_at
             set_flash_message :notice, :send_instructions, email: self.resource.email
           end
-          respond_with resource, location: band_members_directory_path
+          respond_with resource, location: band_members_path
         else
           respond_with_navigational(resource) { render :new }
         end

@@ -6,7 +6,7 @@
       %thead
         %tr
           %th Name
-          %th New activity
+          %th
           %th
           %th
 
@@ -19,7 +19,7 @@
                 = link_to project, class: 'new_activity',
                 title: 'There is new activity' do
                   = fa_icon "headphones"
-                  %span listen
+                  %span new activity
             %td= link_to 'Edit', edit_project_path(project)
             %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }
 

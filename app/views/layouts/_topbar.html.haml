@@ -26,7 +26,7 @@
                 Projects
                 - if current_user.has_new_project_activity?
                   = fa_icon "headphones", class: 'new_activity'
-            %li= link_to 'Band members', band_members_directory_path
+            %li= link_to 'Band members', band_members_path
           %li= link_to 'User settings', edit_user_registration_path
           %li= link_to 'Sign out', destroy_user_session_path, method: :delete
         - else

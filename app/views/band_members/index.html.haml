@@ -17,7 +17,7 @@
             %td= user.name
             - if valid_admin?
               %td
-                = link_to band_members_kickout_path(user),
+                = link_to band_member_path(user),
                 method: :delete, data: { confirm: 'Are you sure?' } do
                   = fa_icon 'biohazard', class: 'remove_link',
                   title: 'Kick out of the band'
