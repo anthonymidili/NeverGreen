@@ -4,18 +4,16 @@ class Notification < ApplicationRecord
   belongs_to :notifiable, polymorphic: true
 
   # Find all band members that are not the current user.
-  def self.new_activity(notifiable, created_by)
-    User.by_band_members.all_but_current(created_by).each do |recipient|
-      NotifierWorker.perform_async(notifiable.id, created_by.id, recipient.id)
+  # notifiable posibilities are [project]
+  def self.new_activity(project, created_by)
+    recipients = User.by_band_members.all_but_current(created_by)
+
+    # Create notifications in the background
+    recipients.each do |recipient|
+      ProjectNotificationsWorker.perform_async(project.id, created_by.id, recipient.id)
     end
+
+    # Send mass email
+    MailBandMembersWorker.perform_async(project.id, created_by.id)
   end
-
-  private
-
-    # Creat a notification.
-    def self.create_notification(notifiable, created_by, recipient)
-      notifiable.notifications.find_or_create_by(recipient: recipient) do |notification|
-        notification.created_by = created_by
-      end
-    end
 end
