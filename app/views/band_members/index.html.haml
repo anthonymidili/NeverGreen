@@ -23,7 +23,9 @@
           %tr
             %td= user.name
             %td= user.email
-            %td= user.current_sign_in_at.in_time_zone(current_user.timezone).strftime('%D at %I:%M%p')
+            %td
+              - if user.current_sign_in_at
+                = user.current_sign_in_at.in_time_zone(current_user.timezone).strftime('%D at %I:%M%p')
             - if valid_admin?
               %td
                 = link_to band_member_path(user),
