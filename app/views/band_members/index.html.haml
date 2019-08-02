@@ -1,5 +1,5 @@
 .grid-x
-  .cell.medium-6.medium-offset-3
+  .cell.medium-10.medium-offset-1
     %h1 Band Members
 
     - if valid_admin?
@@ -9,12 +9,16 @@
       %thead
         %tr
           %td Name
+          %td Email
+          %td Signed in
           - if valid_admin?
             %td Kick out
       %tboby.dark_links
         - @band_members.each do |user|
           %tr
             %td= user.name
+            %td= user.email
+            %td= user.current_sign_in_at.in_time_zone(user.timezone).strftime('%D at %I:%M%p')
             - if valid_admin?
               %td
                 = link_to band_member_path(user),
