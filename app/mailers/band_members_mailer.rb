@@ -5,6 +5,6 @@ class BandMembersMailer < ApplicationMailer
     @project = project
 
     mail to: @to_users.pluck(:email),
-    subject: "New Activity on a #{@project.class.name} by #{@from_user.name}"
+    subject: "New Activity on #{@project.name} by #{@from_user.name}"
   end
 end

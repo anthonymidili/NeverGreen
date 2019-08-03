@@ -12,6 +12,7 @@ class User < ApplicationRecord
 
   scope :by_band_members, -> { where("'band_member' = ANY (roles)") }
   scope :all_but_current, -> (current_user) { where.not(id: current_user) }
+  scope :by_unnotified, -> (project) { where.not(id: project.notifications.pluck(:recipient_id)) }
 
   def new_user?
     sign_in_count == 0
