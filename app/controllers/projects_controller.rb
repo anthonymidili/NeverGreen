@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        Notification.new_activity(@project, current_user)
+        @project.create_send_notifications(current_user)
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
@@ -48,8 +48,7 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-
-        Notification.new_activity(@project, current_user)
+        @project.create_send_notifications(current_user)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -83,7 +82,7 @@ class ProjectsController < ApplicationController
     end
 
     def remove_notification
-      notification = @project.find_user_notification(current_user)
+      notification = @project.find_notification(current_user)
       notification.destroy if notification
     end
 end
