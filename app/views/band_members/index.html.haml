@@ -10,25 +10,26 @@
       = link_to edit_users_timezones_path(return_to: :band_members) do
         = current_user.timezone
         \- CHANGE
-    %table
-      %thead
-        %tr
-          %td Name
-          %td Email
-          %td Signed in
-          - if valid_admin?
-            %td Kick out
-      %tboby.dark_links
-        - @band_members.each do |user|
+    .scroll-x
+      %table
+        %thead
           %tr
-            %td= user.name
-            %td= user.email
-            %td
-              - if user.current_sign_in_at
-                = user.current_sign_in_at.in_time_zone(current_user.timezone).strftime('%D at %I:%M%p')
+            %td Name
+            %td Email
+            %td Signed in
             - if valid_admin?
+              %td.center Kick out
+        %tboby.dark_links
+          - @band_members.each do |user|
+            %tr
+              %td= user.name
+              %td= user.email
               %td
-                = link_to band_member_path(user),
-                method: :delete, data: { confirm: 'Are you sure?' } do
-                  = fa_icon 'biohazard', class: 'remove_link',
-                  title: 'Kick out of the band'
+                - if user.current_sign_in_at
+                  = user.current_sign_in_at.in_time_zone(current_user.timezone).strftime('%D at %I:%M%p')
+              - if valid_admin?
+                %td.center
+                  = link_to band_member_path(user),
+                  method: :delete, data: { confirm: 'Are you sure?' } do
+                    = fa_icon 'biohazard', class: 'remove_link',
+                    title: 'Kick out of the band'

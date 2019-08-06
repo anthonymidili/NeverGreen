@@ -1,27 +1,27 @@
 .grid-x
   .cell
     %h1 Listing projects
-
-    %table
-      %thead
-        %tr
-          %th Name
-          %th
-          %th
-          %th
-
-      %tbody.dark_links
-        - @projects.each do |project|
+    .scroll-x
+      %table
+        %thead
           %tr
-            %td= link_to project.name, project
-            %td
-              - if project.has_new_activity?(current_user)
-                = link_to project, class: 'new_activity',
-                title: 'There is new activity' do
-                  = fa_icon "headphones"
-                  %span new activity
-            %td= link_to 'Edit', edit_project_path(project)
-            %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }
+            %th Name
+            %th
+            %th
+            %th
+
+        %tbody.dark_links
+          - @projects.each do |project|
+            %tr
+              %td= link_to project.name, project
+              %td
+                - if project.has_new_activity?(current_user)
+                  = link_to project, class: 'new_activity',
+                  title: 'There is new activity' do
+                    = fa_icon "headphones"
+                    %span new activity
+              %td= link_to 'Edit', edit_project_path(project)
+              %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }
 
     %br
     %ul.menu.simple

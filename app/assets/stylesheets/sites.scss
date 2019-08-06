@@ -45,3 +45,15 @@ a {
 .player {
   background-color: $topbar-main-backgound;
 }
+
+.scroll-x {
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+
+.center {
+  text-align: center;
+  a {
+    display: inline-block;
+  }
+}
