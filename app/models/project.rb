@@ -5,6 +5,16 @@ class Project < ApplicationRecord
 
   validates :name, presence: true
 
+  def new_tracks(user)
+    @new_tracks ||=
+      tracks.where('created_at > :last_sign_in', last_sign_in: user.last_sign_in_at)
+  end
+
+  def old_tracks(user)
+    @old_tracks ||=
+      tracks.where('created_at < :last_sign_in', last_sign_in: user.last_sign_in_at)
+  end
+
   # Find project, user, notification.
   def find_notification(user)
     notifications.find_by(recipient: user)

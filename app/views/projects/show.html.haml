@@ -3,8 +3,15 @@
     %h1= @project.name
 .grid-x
   - if @project.tracks.attached?
-    - @project.tracks.each do |track|
-      = render 'tracks/track', project: @project, track: track # Do not pass project from here
+    - if @project.new_tracks(current_user).any?
+      .cell New tracks
+      - @project.new_tracks(current_user).each do |track|
+        = render 'tracks/track', project: @project, track: track
+      %br/
+    - if @project.old_tracks(current_user).any?
+      .cell Viewed tracks
+      - @project.old_tracks(current_user).each do |track|
+        = render 'tracks/track', project: @project, track: track
 .grid-x
   .cell
     %br/
