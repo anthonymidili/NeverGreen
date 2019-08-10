@@ -1,6 +1,7 @@
 .grid-x
   .cell
     %h1= @project.name
+    (click on a track to download it)
 .grid-x
   - if @project.tracks.attached?
     - if @project.new_tracks(current_user).any?
