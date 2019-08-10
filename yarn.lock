@@ -12,9 +12,9 @@ node-bin-setup@^1.0.0:
   resolved "https://registry.yarnpkg.com/node-bin-setup/-/node-bin-setup-1.0.6.tgz#4b5c9bb937ece702d7069b36ca78af4684677528"
   integrity sha512-uPIxXNis1CRbv1DwqAxkgBk5NFV3s7cMN/Gf556jSw6jBvV7ca4F9lRL/8cALcZecRibeqU+5dFYqFFmzv5a0Q==
 
-node@^12.5.0:
-  version "12.5.0"
-  resolved "https://registry.yarnpkg.com/node/-/node-12.5.0.tgz#4b82592267e49577d887c8ba160642a03fdf47fc"
-  integrity sha512-1yuDnTf3VDUlsFZ1oxVp3L4z7Nh7O77nGpL/UoIdDmbvOK1FJcXMdQZ7QeWuM+fPAC11gatR4n+T2LVonxUQVw==
+node@^12.8.0:
+  version "12.8.0"
+  resolved "https://registry.yarnpkg.com/node/-/node-12.8.0.tgz#2c6262da20e07d8283813d87ba8b7b3a1af674d8"
+  integrity sha512-ipGOXF4pBfDHJ0VBDmQoXxngQuHgYfurQY8ZHmzQ4g3VdeFm6zDktv27AUD24d+njNygXjouMMNTA87DJeSO/g==
   dependencies:
     node-bin-setup "^1.0.0"
