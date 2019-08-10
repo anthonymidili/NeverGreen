@@ -4,7 +4,7 @@
 .grid-x
   - if @project.tracks.attached?
     - if @project.new_tracks(current_user).any?
-      .cell New tracks - added since you've been gone
+      .cell New tracks added
       - @project.new_tracks(current_user).each do |track|
         = render 'tracks/track', project: @project, track: track
       %br/
