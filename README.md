@@ -3,9 +3,7 @@
 This is the site for the greatest band ever!
 
 * Rock
-
 * Blues
-
 * Folk
 
 > _All rolled into one!_
