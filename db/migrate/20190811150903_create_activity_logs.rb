@@ -4,7 +4,7 @@ class CreateActivityLogs < ActiveRecord::Migration[5.2]
       t.string :action, null: false
       t.integer :tracks_count
       t.text :track_names, array: true, default: []
-      t.references :user, foreign_key: true, null: false
+      t.references :user, foreign_key: true
       t.references :project, foreign_key: true, null: false
 
       t.timestamps

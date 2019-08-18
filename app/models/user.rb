@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  before_destroy :remove_user_from_activity_logs
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,
@@ -38,5 +40,9 @@ class User < ApplicationRecord
         # if the user already has an account, let them in.
         return false
       end
+    end
+
+    def remove_user_from_activity_logs
+      activity_logs.update_all(user_id: nil)
     end
 end

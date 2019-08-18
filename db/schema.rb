@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_150903) do
     t.string "action", null: false
     t.integer "tracks_count"
     t.text "track_names", default: [], array: true
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.bigint "project_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
