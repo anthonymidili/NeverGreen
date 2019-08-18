@@ -20,7 +20,7 @@ class TracksController < ApplicationController
         # Find all associated DownloadedTrack(s) model objects and destroy them manually.
         @project.downloaded_tracks.destroy_associated(@track)
         # Create an ActivityLog.
-        @project.create_activity_log(current_user, 'Track removed', [@track.blob.filename.to_s])
+        @project.create_activity_log(current_user, 'removed', [@track.blob.filename.to_s])
         @track.try(:purge)
         format.html { redirect_to edit_project_path(@project) }
         format.js

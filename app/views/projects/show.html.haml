@@ -1,21 +1,42 @@
 .grid-x
   .cell
     %h1= @project.name
+
+.grid-x
+  .cell.large-6
+    %h3 Project Files
     (click on a track to download it)
-.grid-x
-  - if @project.tracks.attached?
-    - if @project.new_tracks(current_user).any?
-      .cell New tracks added
-      - @project.new_tracks(current_user).each do |track|
-        = render 'tracks/track', project: @project, track: track
-      %br/
-    - if @project.old_tracks(current_user).any?
-      .cell Viewed tracks
-      - @project.old_tracks(current_user).each do |track|
-        = render 'tracks/track', project: @project, track: track
-.grid-x
-  .cell
-    %br/
-    %ul.menu.simple
-      %li= link_to 'Edit', edit_project_path(@project)
-      %li= link_to 'All projects', projects_path
+    .grid-x
+      - if @project.tracks.attached?
+        - if @project.new_tracks(current_user).any?
+          .cell
+            New activity since your last login
+          - @project.new_tracks(current_user).each do |track|
+            = render 'tracks/track', project: @project, track: track
+          %br/
+        - if @project.old_tracks(current_user).any?
+          .cell Viewed activity
+          - @project.old_tracks(current_user).each do |track|
+            = render 'tracks/track', project: @project, track: track
+    .grid-x
+      .cell
+        %p
+          %ul.menu.simple
+            %li= link_to 'Edit', edit_project_path(@project)
+            %li= link_to 'All projects', projects_path
+  .cell.large-6
+    %h3 Activity Log
+    - @project.activity_logs.each do |activity_log|
+      .callout
+        = activity_log.created_at.in_time_zone(current_user.timezone).strftime('%D @ %I:%M%p')
+        %br/
+        - if activity_log.user
+          = activity_log.user.name
+        - else
+          Inactive user
+        \-
+        = activity_log.action
+        = pluralize(activity_log.tracks_count, 'track')
+        - activity_log.track_names.each do |name|
+          %br/
+          = name

@@ -35,7 +35,7 @@ class ProjectsController < ApplicationController
           # Set and send notifications to band members.
           @project.create_send_notifications(current_user)
           # Create an ActivityLog.
-          @project.create_activity_log(current_user, 'Project created', @project.added_track_names)
+          @project.create_activity_log(current_user, 'created project - added', @project.added_track_names)
           format.html { redirect_to @project, notice: 'Project was successfully created.' }
           format.json { render :show, status: :created, location: @project }
         else
@@ -59,7 +59,7 @@ class ProjectsController < ApplicationController
           # Find all project's newly added track names.
           added_track_names = @project.added_track_names(current_track_ids)
           # Create an ActivityLog.
-          @project.create_activity_log(current_user, 'Tracks added', added_track_names)
+          @project.create_activity_log(current_user, 'added', added_track_names)
           # Set and send notifications to band members.
           @project.create_send_notifications(current_user)
           format.html { redirect_to @project, notice: 'Project was successfully updated.' }

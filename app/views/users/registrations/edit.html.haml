@@ -13,30 +13,30 @@
       - if devise_mapping.confirmable? && resource.pending_reconfirmation?
         %div
           Currently waiting confirmation for: #{resource.unconfirmed_email}
-      %br/
-      %h4 Change your timezone
-      = link_to edit_users_timezones_path do
-        = current_user.timezone
-        \- CHANGE
-      %br/
-      %h4 Change your password
-      .field
-        = f.label :password, 'New password'
-        %i (leave blank if you don't want to change it)
-        = f.password_field :password, autocomplete: "new-password"
-        - if @minimum_password_length
-          %em
-            = @minimum_password_length
-            characters minimum
-      .field
-        = f.label :password_confirmation, 'New password confirmation'
-        = f.password_field :password_confirmation, autocomplete: "new-password"
-      .field
-        = f.label :current_password
-        %i (we need your current password to confirm your changes)
-        = f.password_field :current_password, autocomplete: "current-password"
-      .actions
-        = f.submit "Update", class: 'button'
+      %p
+        %h4 Change your timezone
+        = link_to edit_users_timezones_path do
+          = current_user.timezone
+          \- CHANGE
+      %p
+        %h4 Change your password
+        .field
+          = f.label :password, 'New password'
+          %i (leave blank if you don't want to change it)
+          = f.password_field :password, autocomplete: "new-password"
+          - if @minimum_password_length
+            %em
+              = @minimum_password_length
+              characters minimum
+        .field
+          = f.label :password_confirmation, 'New password confirmation'
+          = f.password_field :password_confirmation, autocomplete: "new-password"
+        .field
+          = f.label :current_password
+          %i (we need your current password to confirm your changes)
+          = f.password_field :current_password, autocomplete: "current-password"
+        .actions
+          = f.submit "Update", class: 'button'
     %h3 Cancel my account
     %p
       Unhappy?
