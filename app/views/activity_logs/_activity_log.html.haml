@@ -1,0 +1,14 @@
+.callout.activity_log
+  .timestamp
+    = activity_log.created_at.in_time_zone(current_user.timezone).strftime('%D @ %I:%M%p')
+    %br/
+    - if activity_log.user
+      %b= activity_log.user.name
+    - else
+      Inactive user
+    \-
+    = activity_log.action
+    = pluralize(activity_log.tracks_count, 'track')
+  %ul.menu.vertical.track_names_list
+    - activity_log.track_names.each do |name|
+      %li= name
