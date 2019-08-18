@@ -2,6 +2,7 @@ class Project < ApplicationRecord
   has_many_attached :tracks
   has_many :downloaded_tracks, dependent: :destroy
   has_many :notifications, as: :notifiable, dependent: :destroy
+  has_many :activity_logs, dependent: :destroy
 
   validates :name, presence: true
 
@@ -37,4 +38,25 @@ class Project < ApplicationRecord
     MailBandMembersWorker.perform_async(self.id, created_by.id, recipients.ids)
   end
 
+  # Find all exisiting track ids for the project.
+  def current_track_ids
+    tracks.where.not(id: nil).ids
+  end
+
+  # Find all the newly created track names for the project.
+  def added_track_names(current_track_ids = [])
+    tracks.joins(:blob).where.not(id: current_track_ids).pluck(:filename)
+  end
+
+  # Create a new activity log for the project.
+  def create_activity_log(user, action, track_names)
+    if track_names.present?
+      activity_logs.create(
+        user: user,
+        action: action,
+        tracks_count: track_names.count,
+        track_names: track_names
+      )
+    end
+  end
 end

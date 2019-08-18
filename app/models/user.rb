@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :downloaded_tracks, dependent: :destroy
   has_many :notifications, foreign_key: 'recipient_id', dependent: :destroy
+  has_many :activity_logs
 
   validates :name, presence: true
 
