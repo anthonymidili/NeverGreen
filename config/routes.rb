@@ -21,5 +21,9 @@ Rails.application.routes.draw do
   namespace :users do
     resource :timezones, only: [:edit, :update]
   end
+
+  resources :activity_logs, only: [] do
+    resources :comments, except: [:index, :show]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_11_150903) do
+ActiveRecord::Schema.define(version: 2019_08_31_184948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 2019_08_11_150903) do
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_activity_logs_on_project_id"
     t.index ["user_id"], name: "index_activity_logs_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "commentable_type"
+    t.bigint "commentable_id"
+    t.bigint "created_by_id", null: false
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["created_by_id"], name: "index_comments_on_created_by_id"
   end
 
   create_table "downloaded_tracks", force: :cascade do |t|
@@ -124,6 +135,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_150903) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activity_logs", "projects"
   add_foreign_key "activity_logs", "users"
+  add_foreign_key "comments", "users", column: "created_by_id"
   add_foreign_key "downloaded_tracks", "projects"
   add_foreign_key "downloaded_tracks", "users"
 end
