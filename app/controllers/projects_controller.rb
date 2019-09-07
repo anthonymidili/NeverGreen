@@ -97,7 +97,6 @@ class ProjectsController < ApplicationController
     end
 
     def remove_notification
-      notification = @project.find_notification(current_user)
-      notification.destroy if notification
+      @project.remove_notifications(current_user)
     end
 end

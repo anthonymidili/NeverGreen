@@ -21,9 +21,29 @@ class Project < ApplicationRecord
     notifications.find_by(recipient: user)
   end
 
+  def found_notification?(user)
+    @found_notification ||=
+      find_notification(user).present?
+  end
+
+  def find_comment_notifications(user)
+    comment_notifications = []
+    activity_logs.map do |activity_log|
+      activity_log.comments.map do |comment|
+        comment_notifications << comment.notifications.where(recipient: user)
+      end
+    end
+    comment_notifications.reject(&:blank?)
+  end
+
+  def found_comment_notifications?(user)
+    @found_comment_notifications ||=
+      find_comment_notifications(user).any?
+  end
+
   # Return true if project, user, notification present. Else false.
   def has_new_activity?(user)
-    find_notification(user).present?
+    found_notification?(user) || found_comment_notifications?(user)
   end
 
   # Create notifications and send mass email.
@@ -32,10 +52,15 @@ class Project < ApplicationRecord
     recipients = User.by_band_members.all_but_current(created_by).by_unnotified(self)
     # Create notifications in a background job.
     recipients.each do |recipient|
-      ProjectNotificationsWorker.perform_async(self.id, created_by.id, recipient.id)
+      NotifiableNotificationsWorker.perform_async(self.class.name, self.id, created_by.id, recipient.id)
     end
     # Send mass email in a background job.
     MailBandMembersWorker.perform_async(self.id, created_by.id, recipients.ids)
+  end
+
+  def remove_notifications(user)
+    find_notification(user).destroy if found_notification?(user)
+    find_comment_notifications(user).map(&:destroy_all) if found_comment_notifications?(user)
   end
 
   # Find all exisiting track ids for the project.
