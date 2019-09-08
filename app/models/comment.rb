@@ -19,5 +19,7 @@ class Comment < ApplicationRecord
       recipients.each do |recipient|
         NotifiableNotificationsWorker.perform_async(self.class.name, self.id, created_by.id, recipient.id)
       end
+      # Send mass email in a background job.
+      MailBandMembersWorker.perform_async(commentable.project.id, created_by.id, recipients.ids)
     end
 end
