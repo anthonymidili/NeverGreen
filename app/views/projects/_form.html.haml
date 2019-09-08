@@ -14,6 +14,9 @@
   .grid-x
     .medium-6.cell
       .actions
+        .callout.alert.center
+          %h3 Warning
+          Do NOT leave the page while upload is in progress!
         = f.submit class: 'button'
   .grid-x
     - if f.object.tracks.attached? && f.object.valid?
