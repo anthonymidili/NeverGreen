@@ -4,11 +4,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 6.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 4.0'
+gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
 gem 'sassc-rails', '~> 2.1.2'
 # Use Uglifier as compressor for JavaScript assets
@@ -47,15 +47,17 @@ gem 'sprockets-es6', '~> 0.9.2'
 # fonts
 gem 'font_awesome5_rails'
 # devise
-gem 'devise', '~> 4.6.2'
+gem 'devise', '~> 4.7.1'
 gem 'devise_invitable', '~> 2.0.0'
 # Uploads
 gem 'mini_magick', '~> 4.8'
 gem 'aws-sdk-s3', require: false
 gem 'image_processing', '~> 1.6'
 # Background jobs
-gem 'sidekiq', '~> 5.2.7'
+gem 'sidekiq', '~> 6.0.0'
 gem 'redis', '~> 4.1.2'
+
+gem "webpacker"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -75,7 +77,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
+  gem 'capybara', '>= 3.29'
   gem 'selenium-webdriver'
 
   gem 'webdrivers'
