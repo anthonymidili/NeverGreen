@@ -4,22 +4,22 @@
   .title-bar-title {
     h3 {
       color: black;
-      font-family: $title-font;
+      // font-family: $title-font;
       font-stretch: condensed;
     }
   }
 
   /* on small, make dropdown standout */
   .accordion-menu {
-    background-color: lighten($topbar-main-backgound, 5%);
+    background-color: lighten($topbar-background, 5%);
     .is-accordion-submenu {
-      background-color: lighten($topbar-main-backgound, 15%);
+      background-color: lighten($topbar-background, 15%);
     }
   }
 
   .is-dropdown-submenu {
-    border: lighten($topbar-main-backgound, 5%);
-    background-color: lighten($topbar-main-backgound, 5%);
+    border: lighten($topbar-background, 5%);
+    background-color: lighten($topbar-background, 5%);
   }
 
   .top-bar-right{
