@@ -56,6 +56,9 @@ class ProjectsController < ApplicationController
       respond_to do |format|
         # Find all project's current track ids.
         current_track_ids = @project.current_track_ids
+        # Attach new tracks to existing project.
+        @project.tracks.attach(project_params[:tracks]) if project_params[:tracks]
+
         if @project.update(project_params)
           # Find all project's newly added track names.
           added_track_names = @project.added_track_names(current_track_ids)

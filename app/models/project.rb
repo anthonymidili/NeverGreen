@@ -70,7 +70,7 @@ class Project < ApplicationRecord
 
   # Find all the newly created track names for the project.
   def added_track_names(current_track_ids = [])
-    tracks.joins(:blob).where.not(id: current_track_ids).pluck(:filename)
+    tracks_attachments.joins(:blob).where.not(id: current_track_ids).pluck(:filename)
   end
 
   # Create a new activity log for the project.
