@@ -18,7 +18,7 @@
                 - if project.has_new_activity?(current_user)
                   = link_to project, class: 'new_activity',
                   title: 'There is new activity' do
-                    = fa_icon "headphones"
+                    %i.fas.fa-headphones
                     %span new activity
               %td= link_to 'Edit', edit_project_path(project)
               %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }

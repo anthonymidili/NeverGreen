@@ -29,7 +29,6 @@
                   = user.current_sign_in_at.in_time_zone(current_user.timezone).strftime('%D @ %I:%M%p')
               - if valid_admin?
                 %td.center
-                  = link_to band_member_path(user),
+                  = link_to band_member_path(user), title: 'Kick out of the band',
                   method: :delete, data: { confirm: 'Are you sure?' } do
-                    = fa_icon 'biohazard', class: 'remove_link',
-                    title: 'Kick out of the band'
+                    %i.fas.fa-biohazard.remove_link

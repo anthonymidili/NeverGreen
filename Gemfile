@@ -10,7 +10,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
-gem 'sassc-rails', '~> 2.1.2'
+# gem 'sassc-rails', '~> 2.1.2'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -45,7 +45,7 @@ gem 'haml-rails', '~> 2.0.1'
 # gem 'autoprefixer-rails', '~> 9.6.0'
 # gem 'sprockets-es6', '~> 0.9.2'
 # fonts
-gem 'font_awesome5_rails'
+# gem 'font_awesome5_rails'
 # devise
 gem 'devise', '~> 4.7.1'
 gem 'devise_invitable', '~> 2.0.0'

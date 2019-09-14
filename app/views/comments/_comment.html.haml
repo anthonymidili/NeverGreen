@@ -6,12 +6,13 @@
           %li
             = link_to [:edit, comment.commentable, comment],
             class: 'dark_links', title: 'Edit' do
-              = fa_icon 'edit', text: 'Edit'
+              %i.fas.fa-edit
+              Edit
           %li
             = link_to [comment.commentable, comment], method: :delete,
             data: { confirm: 'Are you sure.' },
             class: 'remove_link', title: 'Delete' do
-              = fa_icon 'trash'
+              %i.fas.fa-trash
       %b= name_or_inactive(comment.created_by)
       \- posted #{time_ago_in_words(comment.created_at)} ago
     .content= simple_format(comment.body)

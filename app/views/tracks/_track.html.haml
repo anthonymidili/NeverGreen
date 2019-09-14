@@ -9,9 +9,9 @@
             = display_track(track)
           - if params[:action] == 'edit' || params[:project_id]
             = link_to project_track_path(project, track),
-            remote: false, method: :delete do
-              = fa_icon('trash', class: 'remove_link', title: 'Remove')
+            remote: false, title: 'Remove', method: :delete do
+              %i.fas.fa-trash.remove_link
       .small-2.cell
         %div{class: "download_status_#{track.id}"}
           - if current_user.downloaded_tracks.find_by(project: project, track_id: track.id)
-            = fa_icon 'cloud-download-alt', class: 'downloaded', title: 'Downloaded'
+            %i.fas.fa-cloud-download-alt.downloaded
