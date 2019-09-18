@@ -9,7 +9,7 @@
             = display_track(track)
           - if params[:action] == 'edit' || params[:project_id]
             = link_to project_track_path(project, track),
-            remote: false, title: 'Remove', method: :delete do
+            remote: true, title: 'Remove', method: :delete do
               %i.fas.fa-trash.remove_link
       .small-2.cell
         %div{class: "download_status_#{track.id}"}
