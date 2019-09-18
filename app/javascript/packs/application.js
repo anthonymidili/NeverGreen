@@ -7,15 +7,12 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require("jquery")
 
 // Foundation setup.
-import 'foundation-sites'
-Foundation.addToJquery($)
+import Foundation from 'foundation-sites'
 $(document).on('turbolinks:load', function() {
   $(document).foundation()
 });
-require("foundation-sites/dist/css/foundation")
 
 // Custom JavaScripts.
 import 'packs/direct_uploads.js'
@@ -24,6 +21,8 @@ import 'packs/tracks.coffee'
 
 // Custom Stylesheets.
 import 'src/application'
+
+// Images and fonts.
 require.context('../images', true)
 
 // fontawesome setup.
