@@ -27,5 +27,10 @@
   "license": "MIT",
   "devDependencies": {
     "webpack-dev-server": "^3.8.0"
+  },
+  "engines": {
+    "node": "13.8.0",
+    "yarn": "1.22.0",
+    "npm": "6.13.7"
   }
 }
