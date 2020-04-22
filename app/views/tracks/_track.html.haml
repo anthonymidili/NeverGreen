@@ -3,9 +3,12 @@
     .grid-x
       .small-10.cell
         .bar
+          - if track.audio?
+            = audio_tag(rails_blob_url(track), controls: true)
+            %br/
           = link_to rails_blob_path(track, disposition: :attachment),
           title: 'Download', id: "download_link_#{track.id}",
-          data: { project: @project.id, track: track.id } do
+          data: { project: project.id, track: track.id } do
             = display_track(track)
           - if params[:action] == 'edit' || params[:project_id]
             = link_to project_track_path(project, track),
