@@ -11,6 +11,8 @@
           data: { project: project.id, track: track.id } do
             = display_track(track)
           - if params[:action] == 'edit' || params[:project_id]
+            %br/
+            = link_to 'Rename Track', edit_project_track_path(project, track), class: 'button hollow small'
             = link_to project_track_path(project, track),
             remote: true, title: 'Remove', method: :delete do
               %i.fas.fa-trash.remove_link

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations', invitations: 'users/invitations' }
 
   resources :projects do
-    resources :tracks, only: [:destroy] do
+    resources :tracks, only: [:edit, :update, :destroy] do
       member do
         post :downloaded
       end

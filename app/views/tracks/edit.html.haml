@@ -1,0 +1,9 @@
+.grid-x
+  .cell.medium-6.medium-offset-3
+    = form_with model: [@project, @track], url: project_track_path(@project, @track),
+    local: true, id: 'track_form' do |f|
+      = render 'notifications/error_messages', object: f.object
+      = f.label :filename, "Track name"
+      = f.text_field :filename, id: "filename_#{@track.id}"
+      = f.submit class: 'button'
+    = link_to 'Back', edit_project_path(@project)
