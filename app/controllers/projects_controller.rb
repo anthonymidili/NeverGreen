@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @comment = Comment.new
   end
 
   # GET /projects/new
@@ -29,16 +30,21 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
 
-    respond_to do |format|
-      if @project.save
-        @project.create_send_notifications(current_user)
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render :show, status: :created, location: @project }
-      else
-        # Remove all blobs that do not have attachments
-        ActiveStorage::Blob.where(metadata: nil).each { |blob| blob.purge }
-        format.html { render :new }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+    ActiveRecord::Base.transaction do
+      respond_to do |format|
+        if @project.save
+          # Set and send notifications to band members.
+          @project.create_send_notifications(current_user)
+          # Create an ActivityLog.
+          @project.create_activity_log(current_user, 'created project - added', @project.added_track_names)
+          format.html { redirect_to @project, notice: 'Project was successfully created.' }
+          format.json { render :show, status: :created, location: @project }
+        else
+          # Remove all blobs that do not have attachments
+          ActiveStorage::Blob.where(metadata: nil).each { |blob| blob.purge }
+          format.html { render :new }
+          format.json { render json: @project.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -46,16 +52,28 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
-    respond_to do |format|
-      if @project.update(project_params)
-        @project.create_send_notifications(current_user)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { render :show, status: :ok, location: @project }
-      else
-        # Remove all blobs that do not have attachments
-        ActiveStorage::Blob.where(metadata: nil).each { |blob| blob.purge }
-        format.html { render :edit }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+    ActiveRecord::Base.transaction do
+      respond_to do |format|
+        # Find all project's current track ids.
+        current_track_ids = @project.current_track_ids
+        # Attach new tracks to existing project.
+        @project.tracks.attach(project_params[:tracks]) if project_params[:tracks]
+
+        if @project.update(project_params)
+          # Find all project's newly added track names.
+          added_track_names = @project.added_track_names(current_track_ids)
+          # Create an ActivityLog.
+          @project.create_activity_log(current_user, 'added', added_track_names)
+          # Set and send notifications to band members.
+          @project.create_send_notifications(current_user)
+          format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+          format.json { render :show, status: :ok, location: @project }
+        else
+          # Remove all blobs that do not have attachments
+          ActiveStorage::Blob.where(metadata: nil).each { |blob| blob.purge }
+          format.html { render :edit }
+          format.json { render json: @project.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -82,7 +100,6 @@ class ProjectsController < ApplicationController
     end
 
     def remove_notification
-      notification = @project.find_notification(current_user)
-      notification.destroy if notification
+      @project.remove_notifications(current_user)
     end
 end

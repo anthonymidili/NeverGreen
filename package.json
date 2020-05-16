@@ -2,13 +2,33 @@
   "name": "NeverGreen",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.10.2",
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "^5.1.1",
+    "astroturf": "^0.9.17",
+    "autoprefixer": "^9.6.1",
+    "coffee-loader": "^0.9.0",
+    "coffeescript": "2.4.1",
+    "foundation-sites": "^6.5.3",
     "jquery": "^3.4.1",
-    "node": "^12.8.0"
+    "node": "^12.10.0",
+    "postcss-loader": "^3.0.0",
+    "turbolinks": "^5.2.0",
+    "webpack": "^4.0.0",
+    "what-input": "^5.2.3"
   },
   "version": "1.0.0",
   "description": "Greatest band ever!",
   "main": "index.js",
   "repository": "https://github.com/anthonymidili/NeverGreen.git",
   "author": "AMidili",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "webpack-dev-server": "^3.8.0"
+  },
+  "engines": {
+    "yarn": "1.22.4"
+  }
 }

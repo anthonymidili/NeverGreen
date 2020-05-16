@@ -4,7 +4,7 @@
   .grid-x
     .cell
       .field
-        = f.label :name
+        = f.label :name, 'Project name'
         = f.text_field :name
   .grid-x
     .cell
@@ -14,8 +14,11 @@
   .grid-x
     .medium-6.cell
       .actions
+        .callout.alert.center
+          %h3 Warning
+          Do NOT leave the page while upload is in progress!
         = f.submit class: 'button'
   .grid-x
-    - if f.object.tracks.attached? && f.object.valid?
+    - if f.object.persisted? && f.object.reload.tracks.attached?
       - f.object.tracks.each do |track|
         = render 'tracks/track', project: f.object, track: track

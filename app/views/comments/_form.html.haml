@@ -1,0 +1,10 @@
+= form_with model: [commentable, comment], local: true do |f|
+  = render 'notifications/error_messages', object: f.object
+
+  .grid-x
+    .cell
+      .field
+        = f.label :body, "New comment"
+        = f.text_area :body
+      .actions
+        = f.submit 'Post', class: 'button'

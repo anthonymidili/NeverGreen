@@ -1,21 +1,31 @@
 .grid-x
   .cell
     %h1= @project.name
+
+.grid-x
+  .cell.large-6
+    %p
+      %ul.menu.simple
+        %li= link_to 'Add or Edit Project Files', edit_project_path(@project)
+        %li= link_to 'All Projects', projects_path
+    %h3 Project Files
     (click on a track to download it)
-.grid-x
-  - if @project.tracks.attached?
-    - if @project.new_tracks(current_user).any?
-      .cell New tracks added
-      - @project.new_tracks(current_user).each do |track|
-        = render 'tracks/track', project: @project, track: track
-      %br/
-    - if @project.old_tracks(current_user).any?
-      .cell Viewed tracks
-      - @project.old_tracks(current_user).each do |track|
-        = render 'tracks/track', project: @project, track: track
-.grid-x
-  .cell
-    %br/
-    %ul.menu.simple
-      %li= link_to 'Edit', edit_project_path(@project)
-      %li= link_to 'All projects', projects_path
+    .grid-x
+      - if @project.tracks.attached?
+        - if @project.new_tracks(current_user).any?
+          .cell
+            New activity since your last login
+          - @project.new_tracks(current_user).each do |track|
+            = render 'tracks/track', project: @project, track: track
+          %br/
+        - if @project.old_tracks(current_user).any?
+          .cell Viewed activity
+          - @project.old_tracks(current_user).each do |track|
+            = render 'tracks/track', project: @project, track: track
+    %p
+      %ul.menu.simple
+        %li= link_to 'Add or Edit Project Files', edit_project_path(@project)
+        %li= link_to 'All Projects', projects_path
+  .cell.large-6
+    %h3 Activity Log
+    = render partial: 'activity_logs/activity_log', collection: @project.activity_logs, locals: { comment: @comment }

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  before_destroy :remove_user_from_activity_logs
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,
@@ -7,12 +9,13 @@ class User < ApplicationRecord
 
   has_many :downloaded_tracks, dependent: :destroy
   has_many :notifications, foreign_key: 'recipient_id', dependent: :destroy
+  has_many :activity_logs
 
   validates :name, presence: true
 
   scope :by_band_members, -> { where("'band_member' = ANY (roles)") }
   scope :all_but_current, -> (current_user) { where.not(id: current_user) }
-  scope :by_unnotified, -> (project) { where.not(id: project.notifications.pluck(:recipient_id)) }
+  scope :by_unnotified, -> (notifiable) { where.not(id: notifiable.notifications.pluck(:recipient_id)) }
 
   def new_user?
     sign_in_count == 0
@@ -37,5 +40,9 @@ class User < ApplicationRecord
         # if the user already has an account, let them in.
         return false
       end
+    end
+
+    def remove_user_from_activity_logs
+      activity_logs.update_all(user_id: nil)
     end
 end

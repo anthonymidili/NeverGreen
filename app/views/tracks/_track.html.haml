@@ -1,17 +1,22 @@
 .cell
   %div{id: "track_#{track.id}"}
     .grid-x
-      .small-10.large-5.cell
+      .small-10.cell
         .bar
+          - if track.audio?
+            = audio_tag(rails_blob_url(track), controls: true)
+            %br/
           = link_to rails_blob_path(track, disposition: :attachment),
           title: 'Download', id: "download_link_#{track.id}",
-          data: { project: @project.id, track: track.id } do
+          data: { project: project.id, track: track.id } do
             = display_track(track)
           - if params[:action] == 'edit' || params[:project_id]
+            %br/
+            = link_to 'Rename Track', edit_project_track_path(project, track), class: 'button hollow small'
             = link_to project_track_path(project, track),
-            remote: true, method: :delete do
-              = fa_icon('trash', class: 'remove_link', title: 'Remove')
-      .small-2.large-7.cell
+            remote: true, title: 'Remove', method: :delete do
+              %i.fas.fa-trash.remove_link
+      .small-2.cell
         %div{class: "download_status_#{track.id}"}
           - if current_user.downloaded_tracks.find_by(project: project, track_id: track.id)
-            = fa_icon 'cloud-download-alt', class: 'downloaded', title: 'Downloaded'
+            %i.fas.fa-cloud-download-alt.downloaded

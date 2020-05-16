@@ -1,0 +1,45 @@
+.top-bar {
+  margin-bottom: 20px;
+
+  .title-bar-title {
+    h3 {
+      color: black;
+      font-family: $title-font;
+      font-stretch: condensed;
+    }
+  }
+
+  /* on small, make dropdown standout */
+  .accordion-menu {
+    background-color: lighten($topbar-background, 5%);
+    .is-accordion-submenu {
+      background-color: lighten($topbar-background, 15%);
+    }
+  }
+
+  .is-dropdown-submenu {
+    border: lighten($topbar-background, 5%);
+    background-color: lighten($topbar-background, 5%);
+  }
+
+  .top-bar-right{
+    a {
+      color: black !important;
+      &:hover {
+        background-color: black !important;
+        color: white !important;
+        &::after {
+          border-color: white transparent transparent !important;
+        }
+      }
+      &::after {
+        border-color: black transparent transparent !important;
+      }
+    }
+  }
+
+  /* Enlarge the menu icon */
+  .menu-icon {
+    width: 80px;
+  }
+}

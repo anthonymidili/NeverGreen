@@ -1,0 +1,14 @@
+.callout.activity_log
+  .timestamp
+    = activity_log.created_at.in_time_zone(current_user.timezone).strftime('%D @ %I:%M%p')
+    %br/
+    %b= name_or_inactive(activity_log.user)
+    \-
+    = activity_log.action
+    = pluralize(activity_log.tracks_count, 'track')
+  %ul.menu.vertical.track_names_list
+    - activity_log.track_names.each do |name|
+      %li= name
+  %hr/
+  = render activity_log.comments
+  = render 'comments/form', commentable: activity_log, comment: comment

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations', invitations: 'users/invitations' }
 
   resources :projects do
-    resources :tracks, only: [:destroy] do
+    resources :tracks, only: [:edit, :update, :destroy] do
       member do
         post :downloaded
       end
@@ -20,6 +20,10 @@ Rails.application.routes.draw do
 
   namespace :users do
     resource :timezones, only: [:edit, :update]
+  end
+
+  resources :activity_logs, only: [] do
+    resources :comments, except: [:index, :show]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
