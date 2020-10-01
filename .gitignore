@@ -25,6 +25,7 @@
 
 # Ignore asdf ruby manager.
 .tool-versions
+.ruby-version
 
 # Ignore yarn and webpack.
 /public/packs

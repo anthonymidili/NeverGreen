@@ -8,7 +8,7 @@ gem 'rails', '~> 6.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 5.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
@@ -26,8 +26,8 @@ gem 'mini_magick', '~> 4.8'
 gem 'aws-sdk-s3', require: false
 gem 'image_processing', '~> 1.6'
 # Background jobs
-gem 'sidekiq', '~> 6.0.0'
-gem 'redis', '~> 4.1.2'
+gem 'sidekiq', '~> 6.1.2'
+gem 'redis', '~> 4.2.2'
 
 gem "webpacker"
 
