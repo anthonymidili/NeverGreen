@@ -26,7 +26,7 @@ gem 'mini_magick', '~> 4.8'
 gem 'aws-sdk-s3', require: false
 gem 'image_processing', '~> 1.6'
 # Background jobs
-gem 'sidekiq', '~> 6.1.2'
+gem 'sidekiq', '~> 6.4.0'
 gem 'redis', '~> 4.2.2'
 
 gem "webpacker"
