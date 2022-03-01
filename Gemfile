@@ -24,7 +24,7 @@ gem 'devise_invitable', '~> 2.0.0'
 # Uploads
 gem 'mini_magick', '~> 4.8'
 gem 'aws-sdk-s3', require: false
-gem 'image_processing', '~> 1.6'
+gem 'image_processing', '~> 1.12'
 # Background jobs
 gem 'sidekiq', '~> 6.1.2'
 gem 'redis', '~> 4.2.2'
